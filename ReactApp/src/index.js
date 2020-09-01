@@ -1,14 +1,15 @@
+//create store -first page call react and start the application
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './views/css/index.css';
+import App from './views/App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import axios from "axios";
-import rootReducer from './rootReducer'
+import rootReducer from './reducers/rootReducer'
 import thunk from 'redux-thunk';
-import {store} from  './actions';
+import {store} from  './actions/customerActions';
 
 
 
