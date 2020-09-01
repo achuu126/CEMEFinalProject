@@ -1,9 +1,10 @@
-package com.allstate.ceme.CEMECustomerAPI.controller;
-import com.allstate.ceme.CEMECustomerAPI.service.CustomerService;
+package com.allstate.ceme.cemeapi.controller;
+import com.allstate.ceme.cemeapi.service.CustomerService;
 import java.util.Collection;
-import com.allstate.ceme.CEMECustomerAPI.entity.Customer;
+import com.allstate.ceme.cemeapi.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/customers")
-//@EnableAutoConfiguration
-
 // @EnableSwagger2
  @CrossOrigin
  public class CustomerController {
@@ -40,11 +39,11 @@ import org.springframework.web.bind.annotation.RestController;
         service.updateCustomer(cust);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/deleteCustomer", method = RequestMethod.POST)
-    public void deleteCustomer(@RequestBody Customer cust) { 
 
-        service.deleteCustomer(cust);
+    @RequestMapping(value = "/deleteCustomer/{id}", method = RequestMethod.DELETE)
+    public void deleteCustomer(@PathVariable String id) { 
+
+        service.deleteCustomerById(id) ;
     }
    
 }

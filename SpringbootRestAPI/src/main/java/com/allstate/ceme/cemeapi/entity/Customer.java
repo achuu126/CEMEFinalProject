@@ -1,4 +1,4 @@
-package com.allstate.ceme.CEMECustomerAPI.entity;
+package com.allstate.ceme.cemeapi.entity;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

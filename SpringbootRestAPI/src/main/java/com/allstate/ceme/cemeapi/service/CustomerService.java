@@ -1,7 +1,7 @@
-package com.allstate.ceme.CEMECustomerAPI.service;
+package com.allstate.ceme.cemeapi.service;
 
-import com.allstate.ceme.CEMECustomerAPI.data.CustomerRepository;
-import com.allstate.ceme.CEMECustomerAPI.entity.Customer;
+import com.allstate.ceme.cemeapi.data.CustomerRepository;
+import com.allstate.ceme.cemeapi.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;

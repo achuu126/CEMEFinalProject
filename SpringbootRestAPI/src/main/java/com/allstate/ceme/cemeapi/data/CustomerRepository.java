@@ -1,7 +1,7 @@
-package com.allstate.ceme.CEMECustomerAPI.data;
+package com.allstate.ceme.cemeapi.data;
 
     
-import com.allstate.ceme.CEMECustomerAPI.entity.Customer;
+import com.allstate.ceme.cemeapi.entity.Customer;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.DeleteQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
