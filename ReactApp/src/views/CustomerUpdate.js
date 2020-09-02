@@ -198,7 +198,7 @@ async function updateCustomer() {  try{
               value="Create Customer"
               className="btn btn-primary"
             /> */  }
-
+            <br></br>
             <button className="submitButton" onClick = {(e)=> updateCustomer(e)}>Update Customer</button>
           </div> 
         </form>

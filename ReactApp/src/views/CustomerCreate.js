@@ -5,7 +5,8 @@ import {addCustomer, store, ADD_CUSTOMER_BEGIN} from '../actions/customerActions
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 import States from "./states.json";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function CustomerCreate(props) {
 
@@ -29,6 +30,9 @@ function CustomerCreate(props) {
     setCustomer({...customer, [e.target.name]: e.target.value})
   }
 
+  const updateBirthday = (date)=>{
+    setCustomer({birthday: date})
+  }
   const dispatch = useDispatch();
   const history = useHistory(); //redirect to the customer search from create customer
 
@@ -38,6 +42,13 @@ function CustomerCreate(props) {
     console.log(customer);
     dispatch(addCustomer(customer));
     history.push({pathname:'./customerSearch'}); 
+  }
+
+  function createContinueCustomer(e) //e-->events to refresh the screen
+  {
+    e.preventDefault();
+    dispatch(addCustomer(customer));
+    window.location.reload(true);
   }
  
   return (
@@ -170,7 +181,11 @@ function CustomerCreate(props) {
           </div>
           <div className="form-row">
             <div className="form-group col-md-5">
-              <label className= "inputLabel">Date of Birth: </label>
+               <label className= "inputLabel">Date of Birth: </label>
+              {/*<DatePicker
+                selected={customer.birthDate}
+                onChange={updateBirthday()}
+                /> */}
               <input onBlur ={(event) => updateCustInfo(event)}
                 id="birthDate"
                 name = "birthDate"
@@ -180,15 +195,11 @@ function CustomerCreate(props) {
               />
             </div>
             </div>
-  
+              <br></br>
           <div className="form-group">
-            {/* <input
-              type="submit"
-              value="Create Customer"
-              className="btn btn-primary"
-            /> */  }
-
+            
             <button className="submitButton" onClick = {(e)=> createCustomer(e)}>Create Customer</button>
+            <button className="submitButton" onClick = {(e)=> createContinueCustomer(e)}>Create More Customer</button>
           </div>
         </form>
       </div> 

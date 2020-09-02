@@ -66,8 +66,6 @@ function CustomerSearch(props) {
          <div className="header">
            <h3>Search Customer</h3>
          </div>
-
-          <br />
          <div className="App">
           <p>List of Customers</p>
           <table className="customers">
