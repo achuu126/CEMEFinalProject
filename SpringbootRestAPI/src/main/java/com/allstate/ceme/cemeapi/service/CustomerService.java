@@ -27,7 +27,9 @@ public class CustomerService {
         return dao.findAll();
     }
 
- 
+    public Collection<Customer> searchCustomer(String firstName, String lastName, String email) {
+        return dao.customFindByFirstNameOrLastNameOrEmail(firstName, lastName, email);
+    }
 
     public Customer findCustomerById(String id) {
       //  return dao.findById(new ObjectId(id));
