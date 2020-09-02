@@ -19,7 +19,7 @@ public interface CustomerRepository extends MongoRepository<Customer, ObjectId> 
     // @Query("{'firstName': ?0}")
     public List<Customer> findByFirstName(String firstName);
 
-    @Query(value = "{ $and: [ { 'firstName' : {$regex:?0,$options:'i'} }, { 'lastName' : {$regex:?1,$options:'i'} }, { 'email' : {$regex:?2,$options:'i'} } ] }")
+    @Query("{ $and: [ { 'firstName' : {$regex:?0,$options:'i'} }, { 'lastName' : {$regex:?1,$options:'i'} }, { 'email' : {$regex:?2,$options:'i'} } ] }")
     public Collection<Customer> customFindByFirstNameOrLastNameOrEmail(String firstName, String lastName, String email);
 
     // @Query("{'email': ?0}")
