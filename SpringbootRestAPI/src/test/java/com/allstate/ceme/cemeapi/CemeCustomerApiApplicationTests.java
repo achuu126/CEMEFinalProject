@@ -37,7 +37,7 @@ class CemeCustomerApiApplicationTests {
         Customer cust2 = new Customer("Reggie", "Madrigal", "reggieM@email.com", "569 Main St.", "661-145-2441");
         Customer cust3 = new Customer("Amy", "Smith", "amySmith@email.com", "897 Main St.", "455-489-2685");
 
-       List<Customer> customers = (List<Customer>) customerDao.customFindByFirstNameOrLastNameOrEmail("Ama", "", "");
+       List<Customer> customers = (List<Customer>) customerDao.customFindByFirstNameOrLastNameOrEmail("Amanda", "Chu", "amandachu@gmail.com");
 
      //   mongoTemplate.insert(cust1);
      //   mongoTemplate.insert(cust2);

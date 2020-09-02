@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -29,11 +30,17 @@ public class CustomerService {
  
 
     public Customer findCustomerById(String id) {
-        return dao.customFindByid(new ObjectId(id));
+      //  return dao.findById(new ObjectId(id));
+        Optional<Customer> customerOptional = dao.findById(new ObjectId(id));
+    if (customerOptional.isPresent()){
+     Customer customer = customerOptional.get();
+     return customer;
+    }
+   return null;
     }
    
     public Customer findCustomerByEmail(String email) {
-        return dao.customFindByemail(email);
+        return dao.findByEmail(email);
     }
    
     public void deleteCustomer(Customer cust) {
@@ -44,7 +51,7 @@ public class CustomerService {
  
 
     public void deleteCustomerById(String id) {
-        dao.deleteByid(new ObjectId(id));
+        dao.deleteById(new ObjectId(id));
     }
 
  

@@ -1,29 +1,32 @@
 import React, { useState } from "react";
-import axios from "axios";
+import Axios from "axios";
 import { connect } from 'react-redux';
-import {addCustomer, store, ADD_CUSTOMER_BEGIN} from '../actions/customerActions';
+import {updateCustomer, store, UPDATE_CUSTOMER_BEGIN} from '../actions/customerActions';
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 
 
-function CustomerCreate(props) {
-
-  // const customerState = useSelector((state) => state);
-  // const {customer, loading, error} = customerState;
+function CustomerUpdate(props) {
+  console.log(props);
+  console.log(props.location.customer.customer.id);
+ // const customerState = useSelector((state) => state);
+ // const {customer, loading, error} = customerState;
+ 
   const [customer, setCustomer]=useState({
-   // id: "",
-    firstName: "",
-    middleInitial:"",
-    lastName: "",
-    street:"",
-    city:"",
-    state:"",
-    zipCode:"",
-    phoneNumber: "",
-    email: "",
-    gender: "",
-    birthDate:""
+     id: props.location.customer.customer.id,
+    firstName: props.location.customer.customer.firstName,
+    middleInitial:  props.location.customer.customer.middleInitial,
+    lastName:  props.location.customer.customer.lastName,
+    street: props.location.customer.customer.street,
+    city: props.location.customer.customer.city,
+    state: props.location.customer.customer.state,
+    zipCode: props.location.customer.customer.zipCode,
+    phoneNumber:  props.location.customer.customer.phoneNumber,
+    email:  props.location.customer.customer.email,
+    gender:  props.location.customer.customer.gender,
+    birthDate: props.location.customer.customer.birthDate
   });
+
   const updateCustInfo = e=>{
     setCustomer({...customer, [e.target.name]: e.target.value})
   }
@@ -31,19 +34,29 @@ function CustomerCreate(props) {
   const dispatch = useDispatch();
   const history = useHistory(); //redirect to the customer search from create customer
 
-  function createCustomer(e) //e-->events to refresh the screen
-  {
-    e.preventDefault();
+//   function updateCustomer(e) //e-->events to refresh the screen
+//   {
+//     e.preventDefault();
+//     console.log(customer);
+//     dispatch(updateCustomer(customer));
+//     history.push({pathname:'./customerSearch'}); 
+//   }
+
+async function updateCustomer() {  try{
     console.log(customer);
-    dispatch(addCustomer(customer));
-    history.push({pathname:'./customerSearch'}); 
+     await Axios.post("http://localhost:8080/customers/updateCustomer", customer)
+     .then( history.push({pathname:'/CustomerSearch'}));
+   
+  }catch(error){
+      console.log(error);
   }
+}
  
   return (
     <>
       <div className= "container" >
         <div className="header">
-        <h3>Create Customer</h3>
+        <h3>Update Customer</h3>
         </div>
        <br></br>
        
@@ -179,12 +192,12 @@ function CustomerCreate(props) {
               className="btn btn-primary"
             /> */  }
 
-            <button className="submitButton" onClick = {(e)=> createCustomer(e)}>Create Customer</button>
-          </div>
+            <button className="submitButton" onClick = {(e)=> updateCustomer(e)}>Update Customer</button>
+          </div> 
         </form>
       </div> 
       </>
   );
 }
 
-export default CustomerCreate;
+export default CustomerUpdate;

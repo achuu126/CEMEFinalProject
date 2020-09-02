@@ -20,7 +20,7 @@ export const DELETE_CUSTOMER_BEGIN   = 'DELETE_CUSTOMER_BEGIN';
 export const DELETE_CUSTOMER_SUCCESS = 'DELETE_CUSTOMER_SUCCESS';
 export const DELETE_CUSTOMER_FAILURE = 'DELETE_CUSTOMER_FAILURE';
 
-//Upda
+//Update
 export const UPDATE_CUSTOMER_BEGIN   = 'UPDATE_CUSTOMER_BEGIN';
 export const UPDATE_CUSTOMER_SUCCESS = 'UPDATE_CUSTOMER_SUCCESS';
 export const UPDATE_CUSTOMER_FAILURE = 'UPDATE_CUSTOMER_FAILURE';
@@ -124,6 +124,19 @@ export function addCustomer(customer) {
       dispatch(addCustomerSuccess(response.data));
     })
     .catch(error => dispatch(addCustomerFailure(error)));
+  }
+}
+//update customer
+export function updateCustomer(customer) {
+  return dispatch => {
+    dispatch(updateCustomerBegin());
+    axios
+    .post("http://localhost:8080/customers/updateCustomer", customer)
+    .then(response => {
+      console.log(response.data);
+      dispatch(updateCustomerSuccess(response.data));
+    })
+    .catch(error => dispatch(updateCustomerFailure(error)));
   }
 }
 

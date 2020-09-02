@@ -11,6 +11,7 @@ import history from './history';
 //import App from '..';
 import CustomerSearch from './CustomerSearch';
 import CustomerCreate from './CustomerCreate';
+import CustomerUpdate from './CustomerUpdate';
 import Navigation from './navigation';
 
  
@@ -29,6 +30,7 @@ import Navigation from './navigation';
             <Switch>
             <Route exact path='/CustomerSearch' component={CustomerSearch}></Route>
             <Route exact path='/CustomerCreate' component={CustomerCreate}></Route> 
+            <Route exact path='/CustomerUpdate' component={CustomerUpdate}></Route>
             </Switch>
         </>
         </BrowserRouter>
