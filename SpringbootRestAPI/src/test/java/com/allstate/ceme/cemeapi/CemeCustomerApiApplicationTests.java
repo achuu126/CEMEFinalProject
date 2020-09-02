@@ -2,6 +2,8 @@ package com.allstate.ceme.cemeapi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
+
+import com.allstate.ceme.cemeapi.data.CustomerRepository;
 import  com.allstate.ceme.cemeapi.entity.Customer;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,9 @@ class CemeCustomerApiApplicationTests {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    CustomerRepository customerDao;
 
  
 
@@ -32,17 +37,16 @@ class CemeCustomerApiApplicationTests {
         Customer cust2 = new Customer("Reggie", "Madrigal", "reggieM@email.com", "569 Main St.", "661-145-2441");
         Customer cust3 = new Customer("Amy", "Smith", "amySmith@email.com", "897 Main St.", "455-489-2685");
 
- 
+       List<Customer> customers = (List<Customer>) customerDao.customFindByFirstNameOrLastNameOrEmail("Ama", "", "");
 
-        mongoTemplate.insert(cust1);
-        mongoTemplate.insert(cust2);
-        mongoTemplate.insert(cust3);
+     //   mongoTemplate.insert(cust1);
+     //   mongoTemplate.insert(cust2);
+     //   mongoTemplate.insert(cust3);
 
- 
 
-        List<Customer> discs = mongoTemplate.findAll(Customer.class);
-        discs.forEach(disc -> System.out.println(disc.getEmail()));
-        assertEquals(3,discs.size());
+       // List<Customer> discs = mongoTemplate.findAll(Customer.class);
+       // discs.forEach(disc -> System.out.println(disc.getEmail()));
+       // assertEquals(3,discs.size());
 
  
 

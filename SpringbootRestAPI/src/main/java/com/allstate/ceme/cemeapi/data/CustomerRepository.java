@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
+import java.util.Collection;
 
 
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
@@ -19,6 +20,8 @@ public interface CustomerRepository extends MongoRepository<Customer, ObjectId> 
 
     @Query("{'firstName': ?0}")
     public List<Customer> customFindByFirstName(String firstName);
+    @Query(value = "{ $or: [ { 'firstName' : {$regex:?0,$options:'i'} }, { 'lastName' : {$regex:?0,$options:'i'} , { 'email' : {$regex:?0,$options:'i'} } ] }")
+    public Collection<Customer> customFindByFirstNameOrLastNameOrEmail(String firstName, String lastName, String email);
     @Query("{'email': ?0}")
     public Customer customFindByemail(String email);
     @Query("{'id': ?0}")
