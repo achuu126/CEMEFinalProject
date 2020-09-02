@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-       <div className="navlinkbg">
+       <div className="topnav">
           <NavLink className="navlink" to="/CustomerSearch">Customer Search</NavLink>
           <NavLink className="navlink" to="/CustomerCreate">Create Customer</NavLink>
        </div>

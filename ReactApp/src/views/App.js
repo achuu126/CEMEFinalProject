@@ -13,7 +13,7 @@ import CustomerSearch from './CustomerSearch';
 import CustomerCreate from './CustomerCreate';
 import CustomerUpdate from './CustomerUpdate';
 import Navigation from './navigation';
-
+import Allstate from './images/allstate.png';
  
 
 /**
@@ -25,6 +25,7 @@ import Navigation from './navigation';
    return (
        <BrowserRouter history={history}>
         <>
+            <img src={Allstate}/>
             <Navigation />
             <br></br>
             <Switch>
