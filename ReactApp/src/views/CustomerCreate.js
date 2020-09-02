@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {addCustomer, store, ADD_CUSTOMER_BEGIN} from '../actions/customerActions';
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
+import States from "./states.json";
 
 
 function CustomerCreate(props) {
@@ -106,13 +107,14 @@ function CustomerCreate(props) {
             </div>
             <div className="form-group col-md-5">
               <label className= "inputLabel">State: </label>
-              <input onBlur ={(event) => updateCustInfo(event)}
-                id="state"
-                name = "state"
-                type="text"
-                className="form-control"
-              defaultValue ={customer.state}              
-              />
+              <select className="soflow" value={customer.state}
+              id = "state"
+              name = "state"
+              onChange={(event) => updateCustInfo(event)}>
+                {States.map((obj)=>
+                  <option key={obj.name}>{obj.name}</option>)}
+                </select>
+              
             </div>
             </div>
             <div className="form-row">
@@ -150,13 +152,20 @@ function CustomerCreate(props) {
             </div>
             <div className="form-group col-md-5">
               <label className= "inputLabel">Gender: </label>
-              <input onBlur ={(event) => updateCustInfo(event)}
+              <select className="soflow" value={customer.gender} 
+              id="gender"
+              name = "gender"
+              onChange={(event) => updateCustInfo(event)}>
+                  <option key="F">F</option>
+                  <option key="M">M</option>
+                </select>
+              {/* <input onBlur ={(event) => updateCustInfo(event)}
                 id="gender"
                 name = "gender"
                 type="text"
                 className="form-control"
               defaultValue ={customer.gender}              
-              />
+              /> */}
             </div>
           </div>
           <div className="form-row">

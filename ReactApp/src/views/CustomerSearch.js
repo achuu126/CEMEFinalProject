@@ -48,6 +48,9 @@ function CustomerSearch(props) {
                    <td>{customer.email}</td>
                    <td>{customer.phoneNumber}</td>
                    <td>{customer.city}</td>
+                   <td>{customer.state}</td>
+                   <td>{customer.zipCode}</td>
+                   <td>{customer.gender}</td>
                </tr>)
                } ));
        }  
