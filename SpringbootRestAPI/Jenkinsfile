@@ -5,10 +5,16 @@ pipeline {
     stages {
         
         stage('Build') {
+
+            def dirpath = "./SpringbootRestAPI"
+            dir(dirpath){
+            //logic
+            
             sh '''
             export GRADLE_USER_HOME=~/.gradle
-            ./gradlew clean build --info
+            ./gradle clean build --info
             '''
+            }
         }
         
     }
