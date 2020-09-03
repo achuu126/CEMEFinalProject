@@ -41,7 +41,11 @@ function CustomerSearch(props) {
                return (
                <tr key={i}>
                    
-                   <td><button className="buttonImg" onClick={() => {deleteCust(customer) }}><img src={Delete}/></button></td>
+                   <td><button className="buttonImg" onClick={() => {
+                     if(window.confirm('Are you sure you want to delete?')) { deleteCust(customer) }
+                     }}>
+                       <img src={Delete}/></button>
+                  </td>
                    <td><button className="buttonImg" onClick={() =>history.push({pathname:'./customerUpdate', customer:{customer}})}><img src={Edit}/></button></td>
                    <td>{customer.firstName}</td>
                    <td>{customer.lastName}</td>

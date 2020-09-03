@@ -63,6 +63,7 @@
   padding: 1px;
   width: 150px;
   display: inline-block;
+  margin-right: 10px;
 }
 
 input[type=text] {
@@ -204,4 +205,9 @@ input[type=submit] {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 300px;
+}
+
+.side {
+  display: inline-block;
+  margin-right: 10px;
 }

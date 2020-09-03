@@ -7,8 +7,11 @@ import {useHistory} from "react-router-dom";
 import States from "./states.json";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 function CustomerCreate(props) {
+
 
   // const customerState = useSelector((state) => state);
   // const {customer, loading, error} = customerState;
@@ -33,6 +36,10 @@ function CustomerCreate(props) {
   const updateBirthday = date=>{
     setCustomer({...customer,birthDate: date})
   }
+  const updatePhone = phone=>{
+    setCustomer({...customer,phoneNumber: phone})
+  }
+  
   const dispatch = useDispatch();
   const history = useHistory(); //redirect to the customer search from create customer
 
@@ -139,17 +146,33 @@ function CustomerCreate(props) {
               defaultValue ={customer.zipcode}              
               />
             </div>
+            <br></br>
             <div className="form-group col-md-5">
+              <div className="side">
               <label className= "inputLabel">Phone Number: </label>
-              <input onBlur ={(event) => updateCustInfo(event)}
+              </div>
+              <div className="side">
+              <PhoneInput
+                className="PhoneInput"
+                placeholder="Enter phone number"
+                defaultCountry ="US"           
+                countries={["US","CA"]}
+                displayInitialValueAsLocalNumber={true}
+                value={customer.phoneNumber}
+                onChange={updatePhone}
+                error={customer.phoneNumber ? (isValidPhoneNumber(customer.phoneNumber) ? undefined :'invalid phone number') : 'Phone number required'}
+              />
+              </div>
+              {/* <input onBlur ={(event) => updateCustInfo(event)}
                 id="phoneNumer"
                 name = "phoneNumber"
                 type="text"
                 className="form-control"
               defaultValue ={customer.phoneNumber}              
-              />
+              /> */}
             </div>
           </div>
+          <br></br>
           <div className="form-row">
             <div className="form-group col-md-5">
               <label className= "inputLabel">Email: </label>
