@@ -6,7 +6,7 @@ pipeline {
         
         stage('Build') {
 
-            def dirpath = "SpringbootRestAPI"
+            def dirpath = "CEMEFinalProject/SpringbootRestAPI"
             dir(dirpath){
             //logic
             
