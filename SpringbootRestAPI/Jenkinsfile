@@ -6,8 +6,7 @@ pipeline {
         
         stage('Build') {
 
-            def dirpath = "SpringbootRestAPI"
-            dir(dirpath){
+            dir("SpringbootRestAPI"){
             //logic
             
             sh 'gradle clean build'
