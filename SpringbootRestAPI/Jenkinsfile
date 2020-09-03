@@ -6,10 +6,9 @@ pipeline {
         
         stage('Build') {
 
+        steps {
             dir("SpringbootRestAPI"){
-            //logic
-            
-            steps {
+            //logic           
                 sh 'gradle clean build'
             }
         }
