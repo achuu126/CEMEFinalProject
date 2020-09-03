@@ -6,6 +6,7 @@ import java.util.List;
 import com.allstate.ceme.cemeapi.data.CustomerRepository;
 import  com.allstate.ceme.cemeapi.entity.Customer;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,14 +15,13 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @SpringBootTest
 class CemeCustomerApiApplicationTests {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+  @Autowired
+  private MongoTemplate mongoTemplate;
 
-    @Autowired
-    CustomerRepository customerDao;
+  @Autowired
+  CustomerRepository customerDao;
 
- 
-
+  @Ignore
     @Test
     // @Before
     // public void cleanUp() {
