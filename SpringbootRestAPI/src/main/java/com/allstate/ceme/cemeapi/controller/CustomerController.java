@@ -1,4 +1,5 @@
 package com.allstate.ceme.cemeapi.controller;
+
 import com.allstate.ceme.cemeapi.service.CustomerService;
 import java.util.Collection;
 import com.allstate.ceme.cemeapi.entity.Customer;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,10 +47,19 @@ import org.springframework.web.bind.annotation.RestController;
 
         service.deleteCustomerById(id) ;
     }
-    @RequestMapping(value = "/searchCustomer/{firstName}/{lastName}/{email}", method = RequestMethod.GET)
-    public Collection<Customer> searchCustomer(@PathVariable String firstName, @PathVariable String lastName, 
-    @PathVariable String email) {
+   
+
+    @RequestMapping(value = "/searchCustomers/{firstName}/{lastName}/{email}", method = RequestMethod.GET)
+    public Collection<Customer> searchCustomers(@PathVariable(required = false) String firstName, @PathVariable(required = false) String lastName, 
+    @PathVariable(required = false) String email) {
         Collection<Customer> custs =  service.searchCustomer(firstName, lastName, email);
+        return custs;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/searchCustomer", method = RequestMethod.POST)
+    public Collection<Customer> searchCustomer(@RequestBody Customer cust) {
+        
+        Collection<Customer> custs =  service.searchCustomer(cust.getFirstName(), cust.getLastName(), cust.getEmail());
         return custs;
     }
    

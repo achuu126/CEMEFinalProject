@@ -139,7 +139,35 @@ export function updateCustomer(customer) {
     .catch(error => dispatch(updateCustomerFailure(error)));
   }
 }
+//Search customers
+export function searchCustomers(customer) {
+    console.log(customer);
+  // if(customer.firstName===''){
+  //   customer.fistName=" ";
 
+  // }
+  // if(customer.lastName===''){
+  //   customer.lastName=" ";
+
+  // }
+  // if(customer.email===''){
+  //   customer.email=" ";
+  // }
+
+    var url = "http://localhost:8080/customers/searchCustomer?firstName=" +customer.firstName +"&lastName="+customer.lastName +"&email="+customer.email ;
+
+  return dispatch => {
+    dispatch(fetchCustomersBegin());
+    axios
+    .post("http://localhost:8080/customers/searchCustomer", customer)
+    .then(response => {
+      console.log(response.data);
+     // if(response.data)
+      dispatch(fetchCustomersSuccess(response.data));
+    })
+    .catch(error => dispatch(fetchCustomersFailure(error)));
+  }
+}
 const initialState = {
   customers: [],
   customer: {}

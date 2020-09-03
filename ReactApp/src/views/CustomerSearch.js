@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./css/customerApp.css";
 import Create from "./CustomerCreate";
 import Update from  "./CustomerUpdate"; //no need this import
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { fetchCustomers, deleteCustomer } from "../actions/customerActions";
+import { fetchCustomers, deleteCustomer, searchCustomers } from "../actions/customerActions";
 import Delete from "./images/Trash.png";
 import Edit from "./images/Modify.png";
 import {useHistory} from "react-router-dom";
@@ -18,6 +18,17 @@ function CustomerSearch(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [customer, setCustomer]=useState({
+    // id: "",
+     firstName: "",
+     lastName: "",
+     email: ""
+    
+   });
+   const updateCustInfo = e=>{
+     setCustomer({...customer, [e.target.name]: e.target.value})
+   }
+
   useEffect(() => {
     dispatch(fetchCustomers());
     return () => {
@@ -29,6 +40,14 @@ function CustomerSearch(props) {
    dispatch(deleteCustomer(c));
    dispatch(fetchCustomers()); 
  }
+//search
+function searchCustomer(e) //e-->events to refresh the screen
+  {
+    e.preventDefault();
+    console.log(customer);
+    dispatch(searchCustomers(customer));
+   // history.push({pathname:'./customerSearch'}); 
+  }
 
   //create customer rows of list
   const tabRow = ({customers}) => {
@@ -70,6 +89,42 @@ function CustomerSearch(props) {
          <div className="header">
            <h3>Search Customer</h3>
          </div>
+
+         <div className="form-row">
+            <div className="form-group col-md-5">
+              <label className= "inputLabel">First Name: </label>
+              <input onBlur ={(event) => updateCustInfo(event)}
+                id="firstName"
+                name = "firstName"
+                type="text"
+                className="form-control"
+              defaultValue ={customer.firstName}              
+              />
+            </div>
+            <div className="form-group col-md-5">
+              <label className= "inputLabel">Last Name: </label>
+              <input onBlur ={(event) => updateCustInfo(event)}
+                id="lastName"
+                name = "lastName"
+                type="text"
+                className="form-control"
+              defaultValue ={customer.lastName}              
+              />
+            </div>
+            <div className="form-group col-md-5">
+              <label className= "inputLabel">Email: </label>
+              <input onBlur ={(event) => updateCustInfo(event)}
+                id="email"
+                name = "email"
+                type="text"
+                className="form-control"
+              defaultValue ={customer.email}              
+              />
+            </div>
+           </div>
+           <button className="submitButton" onClick = {(e)=> searchCustomer(e)}>Search</button>
+           <button className="submitButton" onClick = {()=> (window.location.reload(true))}>Refresh Search</button>
+
          <div className="App">
           <p>List of Customers</p>
           <table className="customers">
