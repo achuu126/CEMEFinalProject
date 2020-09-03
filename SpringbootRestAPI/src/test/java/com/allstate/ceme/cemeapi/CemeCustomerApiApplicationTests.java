@@ -20,8 +20,6 @@ class CemeCustomerApiApplicationTests {
   @Autowired
   CustomerRepository customerDao;
 
-  @Ignore
-    @Test
     // @Before
     // public void cleanUp() {
     //     for (String collectionName : mongoTemplate.getCollectionNames()) {
