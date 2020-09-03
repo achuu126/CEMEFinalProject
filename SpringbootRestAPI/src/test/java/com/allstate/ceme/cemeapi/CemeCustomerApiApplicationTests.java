@@ -1,13 +1,12 @@
 package com.allstate.ceme.cemeapi;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import com.allstate.ceme.cemeapi.data.CustomerRepository;
-import  com.allstate.ceme.cemeapi.entity.Customer;
+import com.allstate.ceme.cemeapi.entity.Customer;
 import org.junit.After;
 import org.junit.Ignore;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
