@@ -29,9 +29,9 @@ function CustomerCreate(props) {
   const updateCustInfo = e=>{
     setCustomer({...customer, [e.target.name]: e.target.value})
   }
-
-  const updateBirthday = (date)=>{
-    setCustomer({birthday: date})
+  
+  const updateBirthday = date=>{
+    setCustomer({...customer,birthDate: date})
   }
   const dispatch = useDispatch();
   const history = useHistory(); //redirect to the customer search from create customer
@@ -182,17 +182,20 @@ function CustomerCreate(props) {
           <div className="form-row">
             <div className="form-group col-md-5">
                <label className= "inputLabel">Date of Birth: </label>
-              {/*<DatePicker
+              <DatePicker
                 selected={customer.birthDate}
-                onChange={updateBirthday()}
-                /> */}
-              <input onBlur ={(event) => updateCustInfo(event)}
+                onChange={ updateBirthday}
+                showMonthDropdown={true}
+                showYearDropdown={true}
+                dateFormat="MM-dd-yyyy"
+                />
+              {/* <input onBlur ={(event) => updateCustInfo(event)}
                 id="birthDate"
                 name = "birthDate"
                 type="text"
                 className="form-control"
               defaultValue ={customer.birthDate}              
-              />
+              /> */}
             </div>
             </div>
               <br></br>

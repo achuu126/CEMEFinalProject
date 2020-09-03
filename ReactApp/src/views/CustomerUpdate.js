@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import {updateCustomer, store, UPDATE_CUSTOMER_BEGIN} from '../actions/customerActions';
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
-import States from "./states.json"
-;
+import States from "./states.json";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 function CustomerUpdate(props) {
   console.log(props);
   console.log(props.location.customer.customer.id);
@@ -29,6 +32,11 @@ function CustomerUpdate(props) {
 
   const updateCustInfo = e=>{
     setCustomer({...customer, [e.target.name]: e.target.value})
+  }
+
+  //update birthday
+  const updateBirthday = date=>{
+    setCustomer({...customer,birthDate: date})
   }
 
   const dispatch = useDispatch();
@@ -182,13 +190,20 @@ async function updateCustomer() {  try{
           <div className="form-row">
             <div className="form-group col-md-5">
               <label className= "inputLabel">Date of Birth: </label>
-              <input onBlur ={(event) => updateCustInfo(event)}
+              <DatePicker
+                selected={new Date(customer.birthDate)}
+                onChange={ updateBirthday}
+                showMonthDropdown={true}
+                showYearDropdown={true}
+                dateFormat="MM-dd-yyyy"
+                />
+              {/* <input onBlur ={(event) => updateCustInfo(event)}
                 id="birthDate"
                 name = "birthDate"
                 type="text"
                 className="form-control"
               defaultValue ={customer.birthDate}              
-              />
+              /> */}
             </div>
             </div>
   
