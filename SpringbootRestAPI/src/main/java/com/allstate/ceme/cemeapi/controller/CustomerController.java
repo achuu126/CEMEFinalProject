@@ -48,6 +48,13 @@ import org.springframework.web.bind.annotation.RestController;
         service.deleteCustomerById(id) ;
     }
    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public Collection<Customer> search(@RequestParam(required = false, defaultValue = "") String firstName, @RequestParam(required = false, defaultValue = "") String lastName, 
+    @RequestParam(required = false, defaultValue="") String email) {
+               Collection<Customer> custs =  service.searchCustomer(firstName, lastName, email);
+        return custs;
+    }
+   
 
     @RequestMapping(value = "/searchCustomers/{firstName}/{lastName}/{email}", method = RequestMethod.GET)
     public Collection<Customer> searchCustomers(@PathVariable(required = false) String firstName, @PathVariable(required = false) String lastName, 
