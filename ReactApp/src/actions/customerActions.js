@@ -4,6 +4,7 @@ import axios from "axios";
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import CustomerReducer from '../reducers/CustomerReducer';
+import { useParams } from "react-router-dom";
 
 // these constants can be used as the names of the actions 
 // so you minimise using the wrong string
@@ -140,7 +141,7 @@ export function updateCustomer(customer) {
   }
 }
 //Search customers
-export function searchCustomers(customer) {
+export function search(customer) {
     console.log(customer);
   // if(customer.firstName===''){
   //   customer.fistName=" ";
@@ -167,6 +168,24 @@ export function searchCustomers(customer) {
     })
     .catch(error => dispatch(fetchCustomersFailure(error)));
   }
+}
+
+export function searchCustomers(customer) {
+  console.log("calling new search");
+
+  var url = "http://localhost:8080/customers/search";
+
+return dispatch => {
+  dispatch(fetchCustomersBegin());
+  axios
+  .get(url, {params:{ firstName: customer.firstName, lastName: customer.lastName, email: customer.email}})
+  .then(response => {
+    console.log(response.data);
+   // if(response.data)
+    dispatch(fetchCustomersSuccess(response.data));
+  })
+  .catch(error => dispatch(fetchCustomersFailure(error)));
+}
 }
 const initialState = {
   customers: [],

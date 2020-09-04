@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { connect } from 'react-redux';
-import {updateCustomer, store, UPDATE_CUSTOMER_BEGIN} from '../actions/customerActions';
+import {updateCustomer, fetchCustomers, store, UPDATE_CUSTOMER_BEGIN} from '../actions/customerActions';
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 import States from "./states.json";
@@ -14,7 +14,7 @@ import 'react-phone-number-input/style.css';
 
 function CustomerUpdate(props) {
   console.log(props);
-  console.log(props.location.customer.customer.id);
+  //console.log(props.location.customer.customer.id);
  // const customerState = useSelector((state) => state);
  // const {customer, loading, error} = customerState;
  
@@ -33,6 +33,12 @@ function CustomerUpdate(props) {
     birthDate: props.location.customer.customer.birthDate
   });
 
+  // useEffect(() => {
+  //   dispatch(fetchCustomers());
+  //   return () => {
+  //     //
+  //   };
+  // }, []);
   const updateCustInfo = e=>{
     setCustomer({...customer, [e.target.name]: e.target.value})
   }
@@ -49,13 +55,13 @@ function CustomerUpdate(props) {
   const dispatch = useDispatch();
   const history = useHistory(); //redirect to the customer search from create customer
 
-//   function updateCustomer(e) //e-->events to refresh the screen
-//   {
-//     e.preventDefault();
-//     console.log(customer);
-//     dispatch(updateCustomer(customer));
-//     history.push({pathname:'./customerSearch'}); 
-//   }
+  // function updateCustomer(e) //e-->events to refresh the screen
+  // {
+  //   //e.preventDefault();
+  //   console.log(customer);
+  //   dispatch(updateCustomer(customer));
+  //   history.push({pathname:'./customerSearch'}); 
+  // }
 
 async function updateCustomer() {  try{
     console.log(customer);
@@ -75,7 +81,7 @@ async function updateCustomer() {  try{
         </div>
        <br></br>
        
-        <form autoComplete="off">
+        <form  autoComplete="off">
           <div className="form-row">
             <div className="form-group col-md-5">
               <label className= "inputLabel">First Name: </label>
@@ -147,11 +153,11 @@ async function updateCustomer() {  try{
             <div className="form-group col-md-5">
               <label className= "inputLabel">Zip Code: </label>
               <input onBlur ={(event) => updateCustInfo(event)}
-                id="zipcode"
-                name = "zipcode"
+                id="zipCode"
+                name = "zipCode"
                 type="text"
                 className="form-control"
-              defaultValue ={customer.zipcode}              
+              defaultValue ={customer.zipCode}              
               />
             </div>
             <br></br>

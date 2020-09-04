@@ -139,11 +139,11 @@ function CustomerCreate(props) {
             <div className="form-group col-md-5">
               <label className= "inputLabel">Zip Code: </label>
               <input onBlur ={(event) => updateCustInfo(event)}
-                id="zipcode"
-                name = "zipcode"
+                id="zipCode"
+                name = "zipCode"
                 type="text"
                 className="form-control"
-              defaultValue ={customer.zipcode}              
+              defaultValue ={customer.zipCode}              
               />
             </div>
             <br></br>
